@@ -5,10 +5,8 @@ import datetime
 
 def hide_sensitive_data(record):
     """
-    Modify a log record to hide sensitive data.
-    This function searches for specific patterns related to authorization,
-    client ID, client secret, and password in a given log record and replaces
-    the associated values with asterisks to mask the sensitive data
+    Modify a log record to hide sensitive data. This function searches for specific patterns related to authorization
+    in a given log record and replaces the associated values with asterisks to mask the sensitive data
     """
     message = record["message"]
     message = re.sub(r'Authorization.*?,', '"Authorization": "********",', message)
@@ -29,7 +27,7 @@ def setup_logger():
     formatted_time = current_time.strftime("%Y-%m-%d_%H-%M-%S")
     log_file = f'./reports/test_log_{formatted_time}.log'
 
-    logger.remove()
+    logger.remove()  # Remove all previously configured handlers to prevent duplicate logging and ensure clean log setup
     logger.add(sink=log_file, level='DEBUG', format=log_format, filter=hide_sensitive_data)
 
     return logger
