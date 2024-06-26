@@ -36,7 +36,7 @@ Follow these steps to setup your development environment:
     ```
     pip3 install -r requirements.txt
     ```
-7. Please update the `.env.templat`e file with your own secret values and rename it to `.env`.
+7. Please update the `.env.template` file with your own secret values and rename it to `.env`.
 
 
 ### Usage
