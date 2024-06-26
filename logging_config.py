@@ -1,5 +1,6 @@
 from loguru import logger
 import re
+import datetime
 
 
 def hide_sensitive_data(record):
@@ -24,7 +25,9 @@ def setup_logger():
     log_format = ('{time:YYYY-MM-DD HH:mm:ss.SSSSSS} '
                   '| <level>{level: <8}</level> '
                   '| <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>')
-    log_file = './reports/test_log.log'
+    current_time = datetime.datetime.now()
+    formatted_time = current_time.strftime("%Y-%m-%d_%H-%M-%S")
+    log_file = f'./reports/test_log_{formatted_time}.log'
 
     logger.remove()
     logger.add(sink=log_file, level='DEBUG', format=log_format, filter=hide_sensitive_data)

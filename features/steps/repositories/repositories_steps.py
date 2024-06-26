@@ -15,7 +15,7 @@ def create_repository(context, repository_name, project_key, workspace_id):
 
 
 @step('I send a request to get repository {repository_name} under workspace {workspace_id}')
-def is_repository_created(context, repository_name, workspace_id):
+def verify_repository_created(context, repository_name, workspace_id):
     log.info("is_repository_created")
     context.response = Repositories().get_repository(cfg.BASE_URL, repository_name, workspace_id)
     context.response_json = context.response.json()
@@ -35,7 +35,7 @@ def delete_repository(context, repository_name, workspace_id):
 
 
 @step('I should not see the repository {repository_name} under workspace {workspace_id}')
-def is_repository_exists(context, repository_name, workspace_id):
+def verify__repository_not_exists(context, repository_name, workspace_id):
     log.info("is_repository_exists")
     context.response = Repositories().get_repository(cfg.BASE_URL, repository_name, workspace_id)
     context.response_json = context.response.json()
